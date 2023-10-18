@@ -12,12 +12,12 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TransacionsDao {
     @Insert
-    fun insertTransaction(transaction: Transaction)
+    suspend fun insertTransaction(transaction: Transaction)
     @Update
-    fun updateTransaction(transaction: Transaction)
+    suspend fun updateTransaction(transaction: Transaction)
 
     @Delete
-    fun deleteTransactions(transactions: List<Transaction>)
+    suspend fun deleteTransactions(transactions: List<Transaction>)
 
     @Query("SELECT * FROM transactions_table ORDER BY date DESC")
     fun getAllTransactions(): Flow<List<Transaction>>
