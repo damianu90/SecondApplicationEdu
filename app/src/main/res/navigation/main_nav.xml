@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/addTransactionFragment">
+
+    <fragment
+        android:id="@+id/transactionFragment"
+        android:name="com.damianu.secondapplicationedu.ui.transaction_fragment.TransactionFragment"
+        android:label="fragment_transaction"
+        tools:layout="@layout/fragment_transaction" />
+    <fragment
+        android:id="@+id/incomeTransactionFragment"
+        android:name="com.damianu.secondapplicationedu.ui.income_fragment.IncomeTransactionFragment"
+        android:label="fragment_income_transaction"
+        tools:layout="@layout/fragment_income_transaction" />
+    <fragment
+        android:id="@+id/outcomeTransactionFragment"
+        android:name="com.damianu.secondapplicationedu.ui.outcome_fragment.OutcomeTransactionFragment"
+        android:label="fragment_outcome_transaction"
+        tools:layout="@layout/fragment_outcome_transaction" />
+
+
+    <fragment
+        android:id="@+id/addTransactionFragment"
+        android:name="com.damianu.secondapplicationedu.ui.add_fragment.AddTransactionFragment"
+        android:label="fragment_add_transaction"
+        tools:layout="@layout/fragment_add_transaction" />
+    <fragment
+        android:id="@+id/editTransactionFragment"
+        android:name="com.damianu.secondapplicationedu.ui.edit_fragment.EditTransactionFragment"
+        android:label="fragment_edit_transaction"
+        tools:layout="@layout/fragment_edit_transaction" />
+</navigation>
