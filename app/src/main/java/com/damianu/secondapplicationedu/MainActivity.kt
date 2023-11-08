@@ -1,6 +1,7 @@
 package com.damianu.secondapplicationedu
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -20,11 +21,30 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setBottomNavVisibility(mainVm.isBottomNavVisible)
+
         val navHostFragment = supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment
         navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
 
-        mainVm.insertTransaction(createTransaction())
+
+        binding.addTransactionFb.setOnClickListener {
+            setBottomNavVisibility(false)
+            navController.navigate(R.id.addTransactionFragment)
+        }
+        //mainVm.insertTransaction(createTransaction())
+    }
+
+    fun setBottomNavVisibility(bottomNavVisible: Boolean) {
+        mainVm.isBottomNavVisible = bottomNavVisible
+
+        val isVisible = when (bottomNavVisible) {
+            true -> View.VISIBLE
+            false -> View.INVISIBLE
+        }
+
+        binding.cardView.visibility = isVisible
+        binding.addTransactionFb.visibility = isVisible
     }
 
     private fun createTransaction() =

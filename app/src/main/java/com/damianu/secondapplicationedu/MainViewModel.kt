@@ -11,6 +11,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(app: Application): AndroidViewModel(app) {
+
+    var isBottomNavVisible = true
     private val repo = TransactionsRepository(app.applicationContext)
 
     fun insertTransaction(transaction: Transaction) =

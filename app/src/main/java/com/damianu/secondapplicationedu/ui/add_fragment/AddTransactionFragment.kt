@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import com.damianu.secondapplicationedu.MainActivity
 import com.damianu.secondapplicationedu.MainViewModel
 import com.damianu.secondapplicationedu.R
 import com.damianu.secondapplicationedu.data.model.Transaction
@@ -25,6 +27,15 @@ class AddTransactionFragment : Fragment() {
     private var _binding: FragmentAddTransactionBinding? = null
     private val binding get() = _binding!!
 
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            (requireActivity() as MainActivity).setBottomNavVisibility(true)
+            isEnabled = false
+            requireActivity().onBackPressed()
+        }
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,6 +49,8 @@ class AddTransactionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupCurrentDate()
+
+        handleOnBackPressed()
 
         val adapter = ArrayAdapter(
             requireContext(),
@@ -62,6 +75,13 @@ class AddTransactionFragment : Fragment() {
     private fun setupCurrentDate() {
         val date = Calendar.getInstance()
         viewModel.date = date.timeInMillis
+    }
+
+    private fun handleOnBackPressed() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            onBackPressedCallback
+        )
     }
 
     private fun showDatePickerDialog() {

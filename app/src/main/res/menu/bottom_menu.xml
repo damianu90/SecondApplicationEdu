@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@id/transactionFragment" android:title="Transactions"/>
-    <item android:id="@+id/incomeTransactionFragment" android:title="Income"/>
-    <item android:id="@+id/outcomeTransactionFragment" android:title="Outcome"/>
+    <item android:id="@id/transactionFragment"
+        android:title="Transactions"
+        android:icon="@drawable/ic_cart_tick"/>
+
+    <item android:id="@+id/incomeTransactionFragment"
+        android:title="Income"
+        android:icon="@drawable/ic_wallet_add"/>
+
+    <item android:id="@+id/outcomeTransactionFragment"
+        android:title="Outcome"
+        android:icon="@drawable/ic_wallet__remove"/>
 
 </menu>
