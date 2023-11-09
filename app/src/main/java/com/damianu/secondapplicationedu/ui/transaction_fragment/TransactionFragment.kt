@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.damianu.secondapplicationedu.MainActivity
 import com.damianu.secondapplicationedu.MainViewModel
 import com.damianu.secondapplicationedu.R
 import com.damianu.secondapplicationedu.databinding.FragmentTransactionBinding
@@ -36,7 +38,9 @@ class TransactionFragment : Fragment() {
 
         mainVm.getAllTransactions().observe(viewLifecycleOwner) { transactions ->
             binding.recyclerView.adapter = TransactionsAdapter(transactions) { transaction, position ->
-
+                mainVm.selectTransaction(transaction)
+                (requireActivity() as MainActivity).setBottomNavVisibility(false)
+                findNavController().navigate(R.id.editTransactionFragment)
             }
         }
     }
