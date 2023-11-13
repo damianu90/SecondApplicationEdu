@@ -2,6 +2,8 @@ package com.damianu.secondapplicationedu.ui.add_fragment
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -63,6 +65,34 @@ class AddTransactionFragment : Fragment() {
         binding.calendarImg.setOnClickListener{
             showDatePickerDialog()
         }
+
+        binding.amountEt.setOnFocusChangeListener { view, b ->
+            if (!b) {
+                binding.amountEt.setBackgroundResource(R.drawable.text_view_outline)
+                binding.errorHintTv.visibility = View.INVISIBLE
+            }
+        }
+
+        binding.amountEt.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                binding.amountEt.setBackgroundResource(R.drawable.text_view_outline_focused)
+                binding.errorHintTv.visibility = View.INVISIBLE
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                try {
+                    p0.toString().toFloat()
+                } catch (e: Exception) {
+                    binding.amountEt.setBackgroundResource(R.drawable.text_view_outline_focused)
+                    binding.errorHintTv.visibility = View.VISIBLE
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+        })
 
         binding.saveBtn.setOnClickListener{
             val trans = createTransaction()
